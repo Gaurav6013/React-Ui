@@ -24,6 +24,8 @@ import { NavLink } from "react-router-dom";
 import TimerFunc from "../Container/Time";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import User from "../Container/User/User";
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import Counter from "../Container/Counter";
 
 const drawerWidth = 240;
 
@@ -107,6 +109,7 @@ export default function DrawerLayout(props) {
   const ListData = [
     { Lable: "Medicine", to: "/Medicine", icon: <MedicalServicesIcon /> },
     { Lable: "Patient", to: "/Patient", icon: <PersonIcon /> },
+    { Lable: "counter", to: "/Counter", icon: <HourglassBottomIcon /> },
   ];
   return (
     <Box sx={{ display: "flex" }}>

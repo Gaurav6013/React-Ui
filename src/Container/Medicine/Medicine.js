@@ -20,6 +20,7 @@ function Medicine(props) {
   const [dopen, setDOpen] = useState(false);
   const [did,setDid]=useState(0);
   const [update,setUpdate] =useState(false);
+  const [searchdata,setSearchData] = useState([]);
  
   const handleClickOpen = () => {
     setOpen(true);
@@ -123,6 +124,21 @@ function Medicine(props) {
       handleClose();
     },
   });
+
+  const Searchdata=(val) =>{
+     let localdata=JSON.parse(localStorage.getItem("data"));
+
+     let  filterData=localdata.filter((item) =>(
+      item.Name.toLowerCase().includes(val.toLowerCase())||
+      item.price.toString().includes(val)||
+      item.Quantity.toString().includes(val)||
+      item.Expiry.toString().includes(val)
+     ))
+      console.log(filterData);
+     setSearchData(filterData);
+  }
+  const SearchData=searchdata.length > 0 ? searchdata
+        :data;
   const columns = [
     { field: "Name", headerName: "Medicine Name", width: 150 },
     { field: "price", headerName: "Price", width: 150 },
@@ -152,16 +168,26 @@ function Medicine(props) {
   return (
     <div>
       <h2>Medicine.</h2>
-      <Box sx={{ m: 1 }}>
+      <Box sx={{ m: 1}}>
         <Stack direction="row" spacing={2}>
           <Button variant="outlined" onClick={handleClickOpen}>
             Add Medicine
           </Button>
+          <TextField sx={{width:500,}}
+                margin="dense"
+                name="Name"
+                label="Search"
+                type="text"
+                fullWidth
+                variant="filled"
+                id="filled-basic"
+                onChange={(e) => Searchdata(e.target.value)}
+              />
         </Stack>
       </Box>
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
-          rows={data}
+          rows={SearchData}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
