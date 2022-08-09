@@ -4,15 +4,29 @@
       "id": "1",
       "Name": "ABC",
       "price": "343",
-      "Quantity": "345",
-      "Expiry": 20248
+      "Quantity": 3,
+      "Expiry": 20
     },
     {
-      "id": 752,
+      "id": 467,
       "Name": "Gaurav",
-      "price": 56,
-      "Quantity": 565,
-      "Expiry": 2030
+      "price": 9,
+      "Quantity": 9,
+      "Expiry": 9
+    },
+    {
+      "id": 283,
+      "Name": "787",
+      "price": 898,
+      "Quantity": 8987,
+      "Expiry": 8878
+    },
+    {
+      "id": 235,
+      "Name": "tyuio",
+      "price": 7,
+      "Quantity": 7,
+      "Expiry": 7
     }
   ]
 }
