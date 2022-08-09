@@ -1,4 +1,5 @@
-import { INCREEMENT_COUNTE,DECREEMENT_COUNTE } from "../Reducer/Actiontype"
+import * as AT from "../Reducer/Actiontype"
+import { INCREEMENT_COUNTE,DECREEMENT_COUNTE} from "../Reducer/Actiontype";
 
 export const increment = () =>(dispatch) =>{
     dispatch({
@@ -10,3 +11,4 @@ export const decrement = () =>(dispatch) =>{
         type:DECREEMENT_COUNTE
     });
 }
+

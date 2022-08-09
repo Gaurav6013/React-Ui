@@ -1,0 +1,12 @@
+{
+    "posts": [
+      {
+        "id":"1",
+        "Name":"ABC",
+        "price":"343",
+        "Quantity":"345",
+        "Expiry":"2024"
+      }
+  
+    ]
+  }

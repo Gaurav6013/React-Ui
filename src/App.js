@@ -7,12 +7,14 @@ import Patient from './Container/Patient/Patient';
 import configureStore from './Redux/Store';
 import Counter from './Container/Counter';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 
 function App() {
-  const store=configureStore()
+  const {store,persistor}=configureStore()
   return (
     <div className="App">
       <Provider store={store}>
+       <PersistGate loading={null} persistor={persistor}>
         <DrawerLayout>
             <Switch>
               <Route path='/Medicine' exact component={Medicine} />
@@ -20,6 +22,7 @@ function App() {
               <Route path='/Counter' exact component={Counter} />
             </Switch>
         </DrawerLayout>
+      </PersistGate>
       </Provider>
     </div>
   );
