@@ -1,12 +1,18 @@
 {
-    "posts": [
-      {
-        "id":"1",
-        "Name":"ABC",
-        "price":"343",
-        "Quantity":"345",
-        "Expiry":"2024"
-      }
-  
-    ]
-  }
+  "posts": [
+    {
+      "id": "1",
+      "Name": "ABC",
+      "price": "343",
+      "Quantity": "345",
+      "Expiry": 20248
+    },
+    {
+      "id": 752,
+      "Name": "Gaurav",
+      "price": 56,
+      "Quantity": 565,
+      "Expiry": 2030
+    }
+  ]
+}

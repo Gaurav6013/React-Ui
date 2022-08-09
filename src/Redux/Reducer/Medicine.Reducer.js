@@ -25,6 +25,30 @@ export const MedicineReducer = (state=initVal,action) =>{
                 isLoading:false,
                 error:action.payload
             }
+        case AT.ADD_MEDICINE:
+            return{
+                ...state,
+                isLoading:false,
+                MD:state.MD.concat(action.payload)
+            }
+        case AT.DELETE_DATA:
+            return{
+                ...state,
+                isLoading:false,
+                MD:state.MD.filter(((i) => i.id !== action.payload))
+            }
+        case AT.UPDATE_DATA:
+            return{
+                ...state,
+                isLoading:false,
+                MD:state.MD.map((l) =>{
+                    if(l.id===action.payload.id){
+                    return action.payload;
+                    }else{
+                    return l;
+                    }
+                }),
+            }
       
         default:
             return state;

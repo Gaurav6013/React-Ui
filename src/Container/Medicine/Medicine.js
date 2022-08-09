@@ -15,7 +15,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import {useSelector,useDispatch} from 'react-redux';
 import { MedicineReducer } from "../../Redux/Reducer/Medicine.Reducer";
-import { Medicinedata } from "../../Redux/Action/Action.medicine";
+import { AddData, DeleteData, Medicinedata, UpdateData } from "../../Redux/Action/Action.medicine";
 
 function Medicine(props) {
   const [open, setOpen] = useState(false);
@@ -40,8 +40,9 @@ function Medicine(props) {
 
   const handleDelete = (params) => {
     let handledelete = JSON.parse(localStorage.getItem("data"));
-    let Deletedata = handledelete.filter((i) => i.id !==did);
-    localStorage.setItem("data", JSON.stringify(Deletedata));
+    // let Deletedata = handledelete.filter((i) => i.id !==did);
+    // localStorage.setItem("data", JSON.stringify(Deletedata));
+    dispatch(DeleteData(did))
     loadData();
     handleClose();
   };
@@ -74,12 +75,13 @@ function Medicine(props) {
       id: id,
       ...values,
     };
-    if (localdata === null) {
-      localStorage.setItem("data", JSON.stringify([addId]));
-    } else {
-      localdata.push(addId);
-      localStorage.setItem("data", JSON.stringify(localdata));
-    }
+    dispatch(AddData(addId));
+    // if (localdata === null) {
+    //   localStorage.setItem("data", JSON.stringify([addId]));
+    // } else {
+    //   localdata.push(addId);
+    //   localStorage.setItem("data", JSON.stringify(localdata));
+    // }
     formikObj.resetForm();
     handleClose();
   };
@@ -92,19 +94,19 @@ function Medicine(props) {
   }
   const updateData = (values) =>{
     let localdata = JSON.parse(localStorage.getItem("data"));
-    const uData=localdata.map((l) =>{
-      if(l.id===values.id){
-       return values;
-      }else{
-       return l;
-      }
-   });
-   localStorage.setItem("data",JSON.stringify(uData));
+  //   const uData=localdata.map((l) =>{
+  //     if(l.id===values.id){
+  //      return values;
+  //     }else{
+  //      return l;
+  //     }
+  //  });
+   dispatch(UpdateData(values))
    loadData();
    setUpdate(false);
   }
    const dispatch = useDispatch()
-   const medicine = useSelector(state =>state.Medicine)
+   const medicine = useSelector(state => state.Medicine)
   useEffect(() => {
     // const data = JSON.parse(localStorage.getItem("data"));
     // if (data) {
@@ -132,9 +134,9 @@ function Medicine(props) {
   });
 
   const Searchdata=(val) =>{
-     let localdata=JSON.parse(localStorage.getItem("data"));
+     let Medicinedata=JSON.parse(localStorage.getItem("data"));
 
-     let  filterData=localdata.filter((item) =>(
+     let  filterData=Medicinedata.filter((item) =>(
       item.Name.toLowerCase().includes(val.toLowerCase())||
       item.price.toString().includes(val)||
       item.Quantity.toString().includes(val)||
@@ -171,7 +173,7 @@ function Medicine(props) {
 
   const { errors, handleBlur, handleChange, handleSubmit, touched,values } = formikObj;
   const c = useSelector(state=>state.counter);
-  const Medicine=useSelector(state => state.Medicine);
+  // const Medicine=useSelector(state => state.Medicine);
   return (
   <>
     {
@@ -203,7 +205,7 @@ function Medicine(props) {
         </Box>
         <div style={{ height: 400, width: "100%" }}>
           <DataGrid
-            rows={medicine.Medicine}
+            rows={medicine.MD}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
