@@ -1,5 +1,34 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "id": 326,
+      "Name": "8890ooo",
+      "price": 9,
+      "Quantity": 0,
+      "Expiry": 9
+    },
+    {
+      "id": 855,
+      "Name": "Gaurav",
+      "price": 45,
+      "Quantity": 98,
+      "Expiry": 98
+    },
+    {
+      "id": 417,
+      "Name": "Gaurav",
+      "price": 898,
+      "Quantity": 989,
+      "Expiry": 898
+    },
+    {
+      "id": 318,
+      "Name": "Rudra",
+      "price": 21,
+      "Quantity": 21,
+      "Expiry": 21
+    }
+  ],
   "comments": [],
   "profile": {
     "name": "typicode"

@@ -75,7 +75,7 @@ function Medicine(props) {
       id: id,
       ...values,
     };
-    dispatch(AddData(addId));
+    dispatch(AddData(values));
     // if (localdata === null) {
     //   localStorage.setItem("data", JSON.stringify([addId]));
     // } else {
@@ -93,7 +93,7 @@ function Medicine(props) {
     setUpdate(true);
   }
   const updateData = (values) =>{
-    let localdata = JSON.parse(localStorage.getItem("data"));
+    // let localdata = JSON.parse(localStorage.getItem("data"));
   //   const uData=localdata.map((l) =>{
   //     if(l.id===values.id){
   //      return values;
@@ -107,6 +107,7 @@ function Medicine(props) {
   }
    const dispatch = useDispatch()
    const medicine = useSelector(state => state.Medicine)
+   console.log(medicine);
   useEffect(() => {
     // const data = JSON.parse(localStorage.getItem("data"));
     // if (data) {
@@ -180,7 +181,7 @@ function Medicine(props) {
       medicine.isLoading?
         <p style={{textAlign:"center"}}> Please Wait...</p>
         :
-      medicine.error !==''?
+      medicine.error!==''?
         <p>{medicine.error}</p> 
         :
       <div>
