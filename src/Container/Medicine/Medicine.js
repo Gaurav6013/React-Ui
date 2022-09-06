@@ -89,18 +89,10 @@ function Medicine(props) {
   const handleEdit =(params) =>{
     handleClickOpen();
     formikObj.setValues(params.row);
-    updateData(values);
+    // updateData(values);
     setUpdate(true);
   }
   const updateData = (values) =>{
-    // let localdata = JSON.parse(localStorage.getItem("data"));
-  //   const uData=localdata.map((l) =>{
-  //     if(l.id===values.id){
-  //      return values;
-  //     }else{
-  //      return l;
-  //     }
-  //  });
    dispatch(UpdateData(values))
    loadData();
    setUpdate(false);
