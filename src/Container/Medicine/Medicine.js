@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import {useSelector,useDispatch} from 'react-redux';
 import { MedicineReducer } from "../../Redux/Reducer/Medicine.Reducer";
 import { AddData, DeleteData, Medicinedata, UpdateData } from "../../Redux/Action/Action.medicine";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Medicine(props) {
   const [open, setOpen] = useState(false);
@@ -62,6 +63,7 @@ function Medicine(props) {
       .positive("price can't be negative"),
     Quantity: yup.string().required("Enter Quantity"),
     Expiry: yup.string().required("Enter Expiry date"),
+    Pro_pic: yup.mixed().required("Please select file"),
     // createdOn: yup.date().default(function () {
     //   return new Date();
     // }),
@@ -99,7 +101,6 @@ function Medicine(props) {
   }
    const dispatch = useDispatch()
    const medicine = useSelector(state => state.Medicine)
-   console.log(medicine);
   useEffect(() => {
     // const data = JSON.parse(localStorage.getItem("data"));
     // if (data) {
@@ -113,6 +114,7 @@ function Medicine(props) {
       price: "",
       Quantity: "",
       Expiry: "",
+      Pro_pic:"",
     },
     validationSchema: schema,
     onSubmit: (values , action) => {
@@ -162,9 +164,19 @@ function Medicine(props) {
         </div>
       ),
     },
+    {
+      field:"Pro_pic",
+      headerName:"Profile pic_URL",
+      width: 150,
+      rendercell:() =>{
+        <div>
+          <AccountCircleIcon  sx={{ width: 40, height: 40, color: "text" }} />
+        </div>
+      }
+    }
   ];
 
-  const { errors, handleBlur, handleChange, handleSubmit, touched,values } = formikObj;
+  const { errors, handleBlur, handleChange, handleSubmit, touched,values,setFieldValue } = formikObj;
   const c = useSelector(state=>state.counter);
   // const Medicine=useSelector(state => state.Medicine);
   return (
@@ -192,6 +204,7 @@ function Medicine(props) {
                   fullWidth
                   variant="filled"
                   id="filled-basic"
+                  onBlur={handleBlur}
                   onChange={(e) => Searchdata(e.target.value)}
                 />
           </Stack>
@@ -272,6 +285,17 @@ function Medicine(props) {
                 />
                 {errors.Expiry && touched.Expiry ? (
                   <p style={{ color: "red" }}>{errors.Expiry}</p>
+                ) : (
+                  ""
+                )}
+                <TextField
+                  type="file"
+                  name="Pro_pic"
+                  variant="outlined" 
+                  onChange={(e) =>setFieldValue("Pro_pic",e.target.files[0])}
+                />
+                {errors.Pro_pic && touched.Pro_pic ? (
+                  <p style={{ color: "red" }}>{errors.Pro_pic}</p>
                 ) : (
                   ""
                 )}
